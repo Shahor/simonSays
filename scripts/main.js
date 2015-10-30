@@ -1,4 +1,6 @@
 var Simon = (function () {
+	'use strict';
+
 	var picked = [];
 	var playerPicks = [];
 	var Colors = ['yellow', 'green', 'red', 'blue'];
@@ -21,7 +23,6 @@ var Simon = (function () {
 	 * again if needed be
 	 */
 	function resetGame() {
-		score = 0;
 		picked = [];
 		playerPicks = [];
 		setPlayerTurn(false);
@@ -146,4 +147,32 @@ var Simon = (function () {
 	}
 
 	// Your code here
+
+	// Handle the click on the play button
+	Controls.addEventListener('click', function (e) {
+		if (e.target.id === 'play') {
+			resetGame();
+			play();
+		}
+	});
+
+	Simon.addEventListener('highlighted', function (e) {
+		var color = e.detail.color;
+		var audio = document.querySelector('audio#' + color);
+
+		if (audio) audio.play();
+	});
+
+	Simon.addEventListener('lost', function () {
+		var currentColor = document.body.style.backgroundColor;
+		document.body.style.backgroundColor = 'red';
+
+		setTimeout(function () {
+			document.body.style.backgroundColor = currentColor;
+		}, 1000);
+	});
+
+	Simon.addEventListener('score', function (e) {
+		document.querySelector('#score span').textContent = e.detail.score;
+	});
 }());
