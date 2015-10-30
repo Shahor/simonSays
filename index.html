@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simon says!</title>
+	<style>
+		*, *::before, *::after {
+			box-sizing: border-box;
+		}
+
+		body {
+			background-color: #cacaca;
+		}
+
+		#simon {
+			width: 402px;
+			height: 400px;
+			margin: auto;
+			border: solid black 1px;
+		}
+
+		#simon.clickable {
+			cursor: pointer;
+		}
+
+		.pad {
+			width: 200px;
+			height:  200px;
+			display: inline-block;
+			vertical-align: top;
+			opacity: 0.5;
+		}
+
+		.pad__selected {
+			opacity: 1;
+		}
+
+		.pad__green {
+			background-color: green;
+		}
+		.pad__red {
+			background-color: red;
+		}
+		.pad__blue {
+			background-color: blue;
+		}
+		.pad__yellow {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<section id="controls">
+		<input id="play" type="button" value="Play" />
+	</section>
+
+	<hr/>
+
+	<section id="simon">
+		<div id="yellow" class="pad pad__yellow"></div><!--
+		--><div id="green" class="pad__green pad"></div><!--
+		--><div id="red" class="pad__red pad"></div><!--
+		--><div id="blue" class="pad__blue pad"></div>
+		<audio id="yellow" src="sounds/1.mp3"></audio>
+		<audio id="green" src="sounds/2.mp3"></audio>
+		<audio id="red" src="sounds/3.mp3"></audio>
+		<audio id="blue" src="sounds/4.mp3"></audio>
+	</section>
+
+	<section id="score">
+		Score : <span>0</span>
+	</section>
+
+	<script type="text/javascript" src="scripts/main.js"></script>
+</body>
+</html>
